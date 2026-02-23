@@ -135,6 +135,32 @@ def Addproducts():
 
         
 
+ # Below is the route for fetching products
+@app.route("/api/get_products")
+def get_products():
+    # create a connection to the database
+    connection = pymysql.connect(host="localhost", user="root", password="", database="sokogardenonline")
+
+    # create a cursor
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
+
+    # structure the query to fetch all the products from the table products_details
+    sql = "SELECT * FROM product_details"
+
+    # execute the querry
+    cursor.execute(sql)
+
+    # create a variable that will hold the data fetched from the table
+    products = cursor.fetchall()
+
+
+
+    return jsonify(products)
+
+
+
+
+
 
 
 
